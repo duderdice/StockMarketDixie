@@ -1,0 +1,24 @@
+<div id="appPanel">
+
+  <div id="stocksPanel">
+
+    <app-stock-info [symbol]="'Aaa'" [color]="'yellow'" [price]="'10.00'"></app-stock-info>
+
+    <app-stock-info [symbol]="'Bbb'" [color]="'black'" [price]="'11.00'"></app-stock-info>
+
+    <app-stock-info [symbol]="'Ccc'" [color]="'orange'" [price]="'12.00'"></app-stock-info>
+
+    <app-stock-info [symbol]="'Ddd'" [color]="'green'" [price]="'13.00'"></app-stock-info>
+
+  </div>
+
+  <div id="bodyPanel">
+    <app-price-chart></app-price-chart>
+    <app-info-panel></app-info-panel>
+  </div>
+
+  <div id="tickerPanel">
+    <app-ticker-tape></app-ticker-tape>
+  </div>
+
+</div>
