@@ -17,18 +17,14 @@
 }
 
 #bodyPanel {
-  background: pink;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  flex: 0 0 auto;
-  
+  /* flex-flow: row nowrap; */
+  justify-content: space-around;
+  flex: 9 0 auto;
 }
 
 #tickerPanel {
   background: green;
-  flex: 1 0 auto;
-  align-items: stretch;
 }
 
 /* original CSS from Angular generated app */
