@@ -29,10 +29,11 @@ export class PriceService {
         this.priceSeries = this.getMockPriceSeries();
         this.allStockSeriesData = this.constructAllStockSeries(this.stockSeries, this.timeSeries, this.priceSeries);
         */
-
+        /*
         console.log('stock series data constructed');
         console.log(this.allStockSeriesData);
         console.log(JSON.stringify(this.allStockSeriesData));
+        */
     }
 
     public getAllStockSeries(): Array<StockPriceSeries> {

@@ -9,7 +9,7 @@ export class AppStockInfoComponent implements OnInit {
 
   @Input() public symbol: string = "";
   @Input() public color: string = "";
-  @Input() public price: number;
+  @Input() public currentPrice: number;
 
   constructor() { }
 

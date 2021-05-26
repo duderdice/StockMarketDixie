@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PriceService } from '../../services/price.service';
+import { Store } from '@ngrx/store';
+import { Stock } from 'src/app/models/Stock';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +13,26 @@ export class AppComponent {
   timeLeft = 10000;
   gameTicker: any;
 
+  public stocks: Array<Stock>;
+  private stocksSubscription: any;
+
   constructor(
-    private _priceService: PriceService
+    private _priceService: PriceService,
+    private _store: Store<any>
   ) { }
 
   public ngOnInit() {
+    this.stocksSubscription = this._store.select('stocks').subscribe((s: Array<Stock>) => {
+      this.stocks = s;
+    });
+    // console.log(`in AppComponent.ngOnInit() => Stocks are ${JSON.stringify(this.stocks)}`);
+
     this._priceService.initializePriceService();
     // this.activateGameTicker();
+  }
+
+  public ngOnDestroy() {
+    this.stocksSubscription.unsubscribe();
   }
 
   private activateGameTicker(): void {

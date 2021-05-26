@@ -1,5 +1,6 @@
 export class Stock {
     symbol: string;
-    price: number;
+    name: string;
+    currentPrice: number;
     color: string;
 }

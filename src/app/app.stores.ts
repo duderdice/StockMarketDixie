@@ -3,28 +3,11 @@ import { compose } from '@ngrx/store';
 import { combineReducers } from '@ngrx/store';
 
 // Stores/Reducers
-import { appState } from './stores/appState.store';
-import { loaderState } from './stores/loaderState.store';
-import { payment } from './stores/payment.store';
-import { user } from './stores/user.store';
-import { userRoleMask } from './stores/userRoleMask.store';
-import { vehicleTypes } from './stores/vehicles.store';
+import { stocks } from './stores/stocks.store';
 
 // const reducers = { /* see below */
 export const APP_STORES = {
-    // AppState
-    appState,
-    loaderState,
-
-    // User
-    user,
-    userRoleMask,
-
-    // Vehicles
-    vehicleTypes,
-
-    // Payment
-    payment,
+    stocks,
 };
 
 /*

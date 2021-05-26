@@ -2,13 +2,8 @@
 
   <div id="stocksPanel">
 
-    <app-stock-info [symbol]="'Aaa'" [color]="'yellow'" [price]="'10.00'"></app-stock-info>
-
-    <app-stock-info [symbol]="'Bbb'" [color]="'black'" [price]="'11.00'"></app-stock-info>
-
-    <app-stock-info [symbol]="'Ccc'" [color]="'orange'" [price]="'12.00'"></app-stock-info>
-
-    <app-stock-info [symbol]="'Ddd'" [color]="'green'" [price]="'13.00'"></app-stock-info>
+    <app-stock-info *ngFor="let stock of stocks" [symbol]="stock.symbol" [color]="stock.color"
+      [currentPrice]="stock.currentPrice"></app-stock-info>
 
   </div>
 
