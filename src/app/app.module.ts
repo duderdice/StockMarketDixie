@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './components/app/app.component';
 import { APP_COMPONENTS } from './app.components';
+import { APP_SERVICES } from './app.services';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { APP_COMPONENTS } from './app.components';
     BrowserAnimationsModule,
     NgxChartsModule
   ],
-  providers: [],
+  providers: [
+    ...APP_SERVICES
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

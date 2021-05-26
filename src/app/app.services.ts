@@ -1,7 +1,5 @@
-import { ApiService } from './services/api.service';
-import { LoggingService } from './services/logging.service';
+import { PriceService } from './services/price.service';
 
 export const APP_SERVICES = [
-    ApiService,
-    LoggingService,
+    PriceService
 ];
