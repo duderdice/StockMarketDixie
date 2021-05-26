@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PriceService } from '../../services/price.service';
 import { Store } from '@ngrx/store';
 import { Stock } from 'src/app/models/Stock';
+import { GameActions } from 'src/app/actionHandlers/game.actions';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,14 @@ import { Stock } from 'src/app/models/Stock';
 })
 export class AppComponent {
   title = 'StockMarketDixie';
-  timeLeft = 10000;
-  gameTicker: any;
+  private timeLeft = 10;      // !!! adjust for # of seconds to let game run
+  gameTicker: number;
 
   public stocks: Array<Stock>;
   private stocksSubscription: any;
 
   constructor(
+    private _gameActions: GameActions,
     private _priceService: PriceService,
     private _store: Store<any>
   ) { }
@@ -25,10 +27,8 @@ export class AppComponent {
     this.stocksSubscription = this._store.select('stocks').subscribe((s: Array<Stock>) => {
       this.stocks = s;
     });
-    // console.log(`in AppComponent.ngOnInit() => Stocks are ${JSON.stringify(this.stocks)}`);
-
     this._priceService.initializePriceService();
-    // this.activateGameTicker();
+    this.activateGameTicker();
   }
 
   public ngOnDestroy() {
@@ -41,13 +41,14 @@ export class AppComponent {
       if (this.timeLeft > 0) {
         this.gameTick();
       } else {
-        this.timeLeft = 60;
+        // this.timeLeft = 60;
+        console.log('Game Over!');
       }
     }, 1000)
   }
 
   private gameTick(): void {
-    //   GameActions.incrementStockPrices();
+    this._gameActions.incrementStockPrices();
     console.log(`timeLeft = ${this.timeLeft} ... tick ... tick ... tick ...`);
     this.timeLeft--;
   }

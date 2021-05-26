@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './components/app/app.component';
+import { APP_ACTION_HANDLERS } from './app.actionHandlers';
 import { APP_COMPONENTS } from './app.components';
 import { APP_SERVICES } from './app.services';
 import { APP_STORES } from './app.stores';
@@ -20,7 +21,8 @@ import { APP_STORES } from './app.stores';
     StoreModule.forRoot(APP_STORES)
   ],
   providers: [
-    ...APP_SERVICES
+    ...APP_ACTION_HANDLERS,
+    ...APP_SERVICES,
   ],
   bootstrap: [AppComponent]
 })

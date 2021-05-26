@@ -19,9 +19,10 @@ export class PriceService {
 
     public initializePriceService() {
         // this.allStockSeriesData = this.getStockPriceData1();
-        this.allStockSeriesData = this.constructStockPriceData1();
+        // this.allStockSeriesData = this.constructStockPriceData1();
 
         // this.allStockSeriesData = this.getStockPriceData2();
+        this.allStockSeriesData = this.constructStockPriceData2();
 
         /* // construct data from sources
         this.timeSeries = this.getTimeSeries();
@@ -29,11 +30,11 @@ export class PriceService {
         this.priceSeries = this.getMockPriceSeries();
         this.allStockSeriesData = this.constructAllStockSeries(this.stockSeries, this.timeSeries, this.priceSeries);
         */
-        /*
+
         console.log('stock series data constructed');
         console.log(this.allStockSeriesData);
         console.log(JSON.stringify(this.allStockSeriesData));
-        */
+        /**/
     }
 
     public getAllStockSeries(): Array<StockPriceSeries> {
@@ -78,6 +79,51 @@ export class PriceService {
 
     private getMockPriceSeries(): Array<number> {
         return [101, 102, 105, 104, 110];
+    }
+
+    private constructStockPriceData2(): Array<StockPriceSeries> {
+
+        const timeSeries: Array<string> = [
+            "1920",
+            "1921",
+            "1922",
+            "1923",
+            "1924",
+            "1925",
+            "1926",
+            "1927",
+            "1928",
+            "1929",
+            "1930",
+        ];
+        const stocks: Array<string> = ["Aaa", "Bbb", "Ccc"];
+        const stockApriceSeries: Array<number> = [101, 105, 125, 155, 195];
+        const stockBpriceSeries: Array<number> = [2147, 6277, 5188, 3297, 4011];
+        const stockCpriceSeries: Array<number> = [5763, 6937, 4333, 4842, 6708];
+
+        let newChartSeries = [];
+        stocks.forEach((stockSymbol: string) => {
+            let newStockSeries = [];
+            for (var i = 0; i < timeSeries.length; i++) {
+                let myPrice = null;
+                switch (stockSymbol) {
+                    case "Aaa":
+                        if (i < stockApriceSeries.length) { myPrice = stockApriceSeries[i]; }
+                        break;
+                    case "Bbb":
+                        if (i < stockBpriceSeries.length) { myPrice = stockBpriceSeries[i]; }
+                        break;
+                    case "Ccc":
+                        if (i < stockCpriceSeries.length) { myPrice = stockCpriceSeries[i]; }
+                        break;
+                    default:
+                        break;
+                }
+                newStockSeries.push({ "value": myPrice, "name": timeSeries[i] });
+            };
+            newChartSeries.push({ "name": stockSymbol, "series": newStockSeries });
+        });
+        return newChartSeries;
     }
 
     private getStockPriceData2(): Array<StockPriceSeries> {
