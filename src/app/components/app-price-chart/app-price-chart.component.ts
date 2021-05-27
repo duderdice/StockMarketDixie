@@ -49,5 +49,14 @@ export class AppPriceChartComponent implements OnInit {
     this.chartSeriesDataSubscription.unsubscribe();
   }
 
+  public xAxisFormatter(val) {
+    const valInt = parseInt(val);
+    if (valInt % 52 <= 6) {
+      const label = Math.round(1920 + (valInt / 52));
+      return `${label}`;
+    } else {
+      return '';
+    }
+  }
 
 }

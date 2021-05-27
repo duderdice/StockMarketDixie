@@ -55,11 +55,14 @@ export class PriceActions {
 
     private getDefaultTimeSeries(): Array<string> {
         let timeSeries: Array<string> = [];
-        for (let i = 0; i < (this.gameTimeInTicks / 4); i++) {
-            for (let j = 1; j <= 4; j++) {
-                let value = `${this.startYear + i} Q${j}`; // "1920 thru 1930, each quarter"
-                timeSeries.push(`${value}`);
-            }
+        // for (let i = 0; i < (this.gameTimeInTicks / 4); i++) {
+        //     for (let j = 1; j <= 4; j++) {
+        //         let value = `${this.startYear + i} Q${j}`; // "1920 thru 1930, each quarter"
+        //         timeSeries.push(`${value}`);
+        //     }
+        // }
+        for (let i = 0; i < this.gameTimeInTicks; i++) {
+            timeSeries.push(`${i}`);
         }
         return timeSeries;
     }
