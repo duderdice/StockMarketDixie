@@ -3,19 +3,41 @@
 }
 
 .stockInfoPanel {
-    padding: 1vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 18vw;
+    height: 10vh;
+    padding: 0.5vw;
     border-radius: 2px;
     background-color: white; /* var(--primary-color); */
-    border: 1px solid black; /* var(--border-color); */
+    border: 2px solid black; /* var(--border-color); */
     color: blue; /* var(--text-color); */
+    font-weight: bold;
 }
 
 .symbol {
+    display: flex;
+    text-align: center;
     padding: 0.5vw;
     font-size: 2vh;
 }
 
 .price {
+    display: flex;
     padding: 0.5vw;
     font-size: 2vh;
+}
+
+.bankruptWatermark {
+    position: absolute;
+    transform: rotate(325deg);
+    font-size: 3vh;
+    font-weight: bold;
+    color: red;
+    border: red double;
+    padding: 2vh;
+    top: 1.5vh;
+    opacity: 0.5;
 }

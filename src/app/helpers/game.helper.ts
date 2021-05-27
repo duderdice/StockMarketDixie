@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Stock } from '../models/Stock';
-import { StockPriceSeries } from '../models/StockPriceSeries';
 
 @Injectable({
     providedIn: 'root'
@@ -22,11 +21,11 @@ export class GameHelper {
 
     public getCurrentPricesStore(): {
         timeSeries: Array<string>;
-        stockSeries: Array<StockPriceSeries>;
+        stockSeries: Array<Stock>;
     } {
         let prices: {
             timeSeries: Array<string>;
-            stockSeries: Array<StockPriceSeries>;
+            stockSeries: Array<Stock>;
         };
         this._store.select('prices').subscribe((p) => {
             prices = p;

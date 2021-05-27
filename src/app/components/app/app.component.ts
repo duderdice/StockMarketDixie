@@ -6,7 +6,6 @@ import { GameActions } from 'src/app/actionHandlers/game.actions';
 import { PriceActions } from 'src/app/actionHandlers/price.actions';
 import { ChartDataSeries } from 'src/app/models/ChartDataSeries';
 import { PriceHelper } from 'src/app/helpers/price.helper';
-import { StockPriceSeries } from 'src/app/models/StockPriceSeries';
 import * as Constants from 'src/app/constants/constants';
 
 @Component({
@@ -33,7 +32,7 @@ export class AppComponent {
   public ngOnInit() {
     this._priceActions.initializeStockPriceCharts();
     this.activateGameTicker();
-    this.stocksSubscription = this._store.select('prices').subscribe((p: { timeSeries: Array<string>; stockSeries: Array<StockPriceSeries>; }) => {
+    this.stocksSubscription = this._store.select('prices').subscribe((p: { timeSeries: Array<string>; stockSeries: Array<Stock>; }) => {
       this.stocks = this._priceHelper.transformPricesStateIntoStockInfo(p);
     });
   }

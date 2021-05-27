@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { ChartDataSeries } from 'src/app/models/ChartDataSeries';
+import { Stock } from 'src/app/models/Stock';
 import { PriceHelper } from '../../helpers/price.helper';
 
 @Component({
@@ -26,12 +27,10 @@ export class AppPriceChartComponent implements OnInit {
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Price';
+  yAxisLabel: string = 'Price ($)';
   timeline: boolean = true;
 
-  colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
-  };
+  colorScheme;
 
   constructor(
     private _priceHelper: PriceHelper,
@@ -39,9 +38,11 @@ export class AppPriceChartComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    // debugger;
     this.chartSeriesDataSubscription = this._store.select('prices').subscribe((p) => {
       this.chartSeriesData = this._priceHelper.transformPricesStateIntoPricesChartData(p);
+      if (!this.colorScheme) {
+        this.colorScheme = this.getColorSchemeFromStocks(p);
+      }
     });
   }
 
@@ -57,6 +58,13 @@ export class AppPriceChartComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  private getColorSchemeFromStocks(p) {
+    const colors: Array<string> = p.stockSeries.map((s: Stock) => {
+      return s.color;
+    });
+    return { domain: colors };
   }
 
 }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { Stock } from '../models/Stock';
-import { StockPriceSeries } from '../models/StockPriceSeries';
 import { ChartDataSeries } from '../models/ChartDataSeries';
 
 @Injectable({
@@ -11,12 +10,12 @@ import { ChartDataSeries } from '../models/ChartDataSeries';
 export class PriceHelper {
     constructor() { }
 
-    public transformPricesStateIntoPricesChartData(p: { timeSeries: Array<string>; stockSeries: Array<StockPriceSeries>; }): Array<ChartDataSeries> {
+    public transformPricesStateIntoPricesChartData(p: { timeSeries: Array<string>; stockSeries: Array<Stock>; }): Array<ChartDataSeries> {
         console.log('inside PriceHelper.transformPricesStateIntoPricesChartData(), received...');
         console.log(p);
 
         let newChartSeries: Array<ChartDataSeries> = [];
-        p.stockSeries.forEach((sps: StockPriceSeries) => {
+        p.stockSeries.forEach((sps: Stock) => {
             let newStockSeries = [];
             for (var i = 0; i < p.timeSeries.length; i++) {
                 let myPrice = null;
@@ -33,21 +32,22 @@ export class PriceHelper {
         return newChartSeries;
     }
 
-    public transformPricesStateIntoStockInfo(p: { timeSeries: Array<string>; stockSeries: Array<StockPriceSeries>; }): Array<Stock> {
+    public transformPricesStateIntoStockInfo(p: { timeSeries: Array<string>; stockSeries: Array<Stock>; }): Array<Stock> {
         console.log('inside PriceHelper.transformPricesStateIntoPricesChartData(), received...');
         console.log(p);
 
-        let stocks: Array<Stock> = p.stockSeries.map((sps: StockPriceSeries) => {
-            return {
-                symbol: sps.symbol,
-                name: sps.name,
-                currentPrice: sps.currentPrice,
-                color: sps.color
-            }
-        });
+        // let stocks: Array<Stock> = p.stockSeries.map((sps: Stock) => {
+        //     return {
+        //         symbol: sps.symbol,
+        //         name: sps.name,
+        //         currentPrice: sps.currentPrice,
+        //         color: sps.color
+        //     }
+        // });
 
-        console.log('providing back ...');
-        console.log(stocks);
-        return stocks;
+        // console.log('providing back ...');
+        // console.log(stocks);
+        // return stocks;
+        return p.stockSeries;
     }
 }

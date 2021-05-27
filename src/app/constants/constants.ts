@@ -6,7 +6,7 @@
 
 export const
     GAME_TIME_IN_TICKS = 520, //weekly ticks for full decade
-    UPDATE_INTERVAL_IN_SECONDS = 1000;
+    UPDATE_INTERVAL_IN_SECONDS = 500;
     // AppName = 'SampleAngularApp',
     // AppVersion = 'v0.0.0',
     // DATE_FORMAT_ddmmyyyy = 'dd-mmm-yyyy',

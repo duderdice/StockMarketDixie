@@ -2,8 +2,7 @@
 
   <div id="stocksPanel">
 
-    <app-stock-info *ngFor="let stock of stocks" [symbol]="stock.symbol" [color]="stock.color"
-      [currentPrice]="stock.currentPrice"></app-stock-info>
+    <app-stock-info *ngFor="let stock of stocks" [stock]="stock"></app-stock-info>
 
   </div>
 

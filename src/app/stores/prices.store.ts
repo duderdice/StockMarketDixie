@@ -1,12 +1,11 @@
 import { Action } from '@ngrx/store';
 
 import { Stock } from '../models/Stock';
-import { StockPriceSeries } from '../models/StockPriceSeries';
 
 // State
 export class State {
     timeSeries: Array<string>;
-    stockSeries: Array<StockPriceSeries>;
+    stockSeries: Array<Stock>;
 }
 
 // const initialState = {};
@@ -27,7 +26,7 @@ export class AddTimeSeriesAction implements Action {
 }
 export class AddStockSeriesAction implements Action {
     readonly type = ADD_STOCK_SERIES;
-    payload: Array<StockPriceSeries>;
+    payload: Array<Stock>;
 }
 export class RecordStockPriceUpdateAction implements Action {
     readonly type = RECORD_STOCK_PRICE_UPDATE;
@@ -52,13 +51,18 @@ export function prices(state: State = initialState, action: Actions): State {
         case RECORD_STOCK_PRICE_UPDATE:
             let newState2: State = { timeSeries: [], stockSeries: [] };
             newState2.timeSeries = state.timeSeries;
-            let newStockSeriesArray: Array<StockPriceSeries> = state.stockSeries.map((sps: StockPriceSeries) => {
+            let newStockSeriesArray: Array<Stock> = state.stockSeries.map((sps: Stock) => {
                 if (sps.symbol === action.payload.symbol) {
-                    let newStockSeries: StockPriceSeries = {
+                    let newStockSeries: Stock = {
                         ...sps,
                         currentPrice: action.payload.price,
                         series: [...sps.series, action.payload.price]
                     };
+                    // detect bankruptcy
+                    if (newStockSeries.currentPrice < 0.005) {
+                        newStockSeries.currentPrice = 0;
+                        newStockSeries.isBankrupt = true;
+                    }
                     return newStockSeries;
                 } else {
                     return sps;

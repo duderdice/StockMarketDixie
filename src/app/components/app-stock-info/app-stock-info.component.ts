@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Stock } from '../../models/Stock';
 
 @Component({
   selector: 'app-stock-info',
@@ -7,9 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class AppStockInfoComponent implements OnInit {
 
-  @Input() public symbol: string = "";
-  @Input() public color: string = "";
-  @Input() public currentPrice: number;
+  @Input() public stock: Stock;
 
   constructor() { }
 

@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 
 import { GameHelper } from '../helpers/game.helper';
 import { ChartDataSeries } from '../models/ChartDataSeries';
-import { StockPriceSeries } from '../models/StockPriceSeries';
 import { Stock } from '../models/Stock';
 import { ADD_TIME_SERIES, ADD_STOCK_SERIES, RECORD_STOCK_PRICE_UPDATE } from '../stores/prices.store';
 import * as Constants from 'src/app/constants/constants';
@@ -67,35 +66,39 @@ export class PriceActions {
         return timeSeries;
     }
 
-    private getDefaultStockSeries(): Array<StockPriceSeries> {
+    private getDefaultStockSeries(): Array<Stock> {
         return [
             {
                 symbol: "DAL",
                 name: "Delta Airlines",
-                color: "red",
-                currentPrice: 10.00,
-                series: [10.00]
+                color: "#D1202D",
+                currentPrice: 100.00,
+                isBankrupt: false,
+                series: [100.00]
             },
             {
                 symbol: "BG",
                 name: "Black Gold",
                 color: "black",
-                currentPrice: 10.00,
-                series: [10.00]
+                currentPrice: 100.00,
+                isBankrupt: false,
+                series: [100.00]
             },
             {
                 symbol: "T",
-                name: "Doug Labor Enterprises",
+                name: "Doug Laber Enterprises",
                 color: "orange",
-                currentPrice: 10.00,
-                series: [10.00]
+                currentPrice: 100.00,
+                isBankrupt: false,
+                series: [100.00]
             },
             {
                 symbol: "F",
                 name: "Ford Motorcars",
-                color: "green",
-                currentPrice: 10.00,
-                series: [10.00]
+                color: "#2768A9",
+                currentPrice: 100.00,
+                isBankrupt: false,
+                series: [100.00]
             }
         ];
     }

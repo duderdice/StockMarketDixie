@@ -1,7 +1,9 @@
-<div class="stockInfoPanel">
+<div class="stockInfoPanel" [style.color]="stock.color" [style.border-color]="stock.color">
 
-    <span class="symbol">{{symbol}}</span>
+    <span class="symbol">{{stock.name}} ({{stock.symbol}})</span>
 
-    <span class="price">{{ currentPrice | currency }}</span>
+    <span class="price">{{ stock.currentPrice | currency }}</span>
+
+    <div *ngIf="stock.isBankrupt" class="bankruptWatermark">BANKRUPT</div>
 
 </div>
