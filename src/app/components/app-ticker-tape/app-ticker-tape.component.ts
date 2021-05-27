@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppTickerTapeComponent implements OnInit {
 
-  public text: string = "this is my scrolling text";
+  public text: string = "this is my scrolling text for the ticker tape";
   private readonly maxMessageSize: number = 100;
   private readonly retainedMessageSize: number = -10; // portion of text to substring from end of current value
 

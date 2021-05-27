@@ -3,11 +3,11 @@ import { compose } from '@ngrx/store';
 import { combineReducers } from '@ngrx/store';
 
 // Stores/Reducers
-import { stocks } from './stores/stocks.store';
+import { prices } from './stores/prices.store';
 
 // const reducers = { /* see below */
 export const APP_STORES = {
-    stocks,
+    prices
 };
 
 /*

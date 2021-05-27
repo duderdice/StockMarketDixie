@@ -1,16 +1,21 @@
 :host {
     display: block;
+}
+
+.stockInfoPanel {
     padding: 1vw;
     border-radius: 2px;
     background-color: white; /* var(--primary-color); */
     border: 1px solid black; /* var(--border-color); */
     color: blue; /* var(--text-color); */
-  }
+}
 
 .symbol {
     padding: 0.5vw;
+    font-size: 2vh;
 }
 
 .price {
     padding: 0.5vw;
+    font-size: 2vh;
 }

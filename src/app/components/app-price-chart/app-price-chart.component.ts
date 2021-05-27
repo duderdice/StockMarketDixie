@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { StockPriceSeries } from '../../models/StockPriceSeries';
-import { PriceService } from '../../services/price.service';
+import { Store } from '@ngrx/store';
+
+import { ChartDataSeries } from 'src/app/models/ChartDataSeries';
+import { PriceHelper } from '../../helpers/price.helper';
 
 @Component({
   selector: 'app-price-chart',
@@ -10,7 +12,8 @@ import { PriceService } from '../../services/price.service';
 export class AppPriceChartComponent implements OnInit {
 
   // Series Data
-  chartSeriesData: any[];
+  public chartSeriesData: Array<ChartDataSeries>;
+  private chartSeriesDataSubscription: any;
 
   // chartSize: Array<number> = [1400, 600];
 
@@ -31,11 +34,19 @@ export class AppPriceChartComponent implements OnInit {
   };
 
   constructor(
-    private _priceService: PriceService
+    private _priceHelper: PriceHelper,
+    private _store: Store<any>
   ) { }
 
-  ngOnInit(): void {
-    this.chartSeriesData = this._priceService.getAllStockSeries();
+  public ngOnInit(): void {
+    // debugger;
+    this.chartSeriesDataSubscription = this._store.select('prices').subscribe((p) => {
+      this.chartSeriesData = this._priceHelper.transformPricesStateIntoPricesChartData(p);
+    });
+  }
+
+  public ngOnDestroy() {
+    this.chartSeriesDataSubscription.unsubscribe();
   }
 
 

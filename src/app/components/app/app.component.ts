@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import { PriceService } from '../../services/price.service';
 import { Store } from '@ngrx/store';
+
 import { Stock } from 'src/app/models/Stock';
 import { GameActions } from 'src/app/actionHandlers/game.actions';
+import { PriceActions } from 'src/app/actionHandlers/price.actions';
+import { ChartDataSeries } from 'src/app/models/ChartDataSeries';
+import { PriceHelper } from 'src/app/helpers/price.helper';
+import { StockPriceSeries } from 'src/app/models/StockPriceSeries';
+import * as Constants from 'src/app/constants/constants';
 
 @Component({
   selector: 'app-root',
@@ -10,25 +15,27 @@ import { GameActions } from 'src/app/actionHandlers/game.actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'StockMarketDixie';
-  private timeLeft = 10;      // !!! adjust for # of seconds to let game run
-  gameTicker: number;
+  public title = 'StockMarketDixie';
+  private gameTimeInSeconds = Constants.GAME_TIME_IN_TICKS;
+  private readonly updateIntervalInMilliseconds = Constants.UPDATE_INTERVAL_IN_SECONDS;
+  private gameTicker: number;
 
   public stocks: Array<Stock>;
   private stocksSubscription: any;
 
   constructor(
     private _gameActions: GameActions,
-    private _priceService: PriceService,
+    private _priceActions: PriceActions,
+    private _priceHelper: PriceHelper,
     private _store: Store<any>
   ) { }
 
   public ngOnInit() {
-    this.stocksSubscription = this._store.select('stocks').subscribe((s: Array<Stock>) => {
-      this.stocks = s;
-    });
-    this._priceService.initializePriceService();
+    this._priceActions.initializeStockPriceCharts();
     this.activateGameTicker();
+    this.stocksSubscription = this._store.select('prices').subscribe((p: { timeSeries: Array<string>; stockSeries: Array<StockPriceSeries>; }) => {
+      this.stocks = this._priceHelper.transformPricesStateIntoStockInfo(p);
+    });
   }
 
   public ngOnDestroy() {
@@ -38,18 +45,19 @@ export class AppComponent {
   private activateGameTicker(): void {
     // set timer interval to trigger periodic updates of stock prices
     this.gameTicker = setInterval(() => {
-      if (this.timeLeft > 0) {
+      if (this.gameTimeInSeconds > 0) {
         this.gameTick();
       } else {
-        // this.timeLeft = 60;
+        // this.timeLeft = 60; // add 60 more seconds
         console.log('Game Over!');
+        window.clearInterval(this.gameTicker);
       }
-    }, 1000)
+    }, this.updateIntervalInMilliseconds)
   }
 
   private gameTick(): void {
     this._gameActions.incrementStockPrices();
-    console.log(`timeLeft = ${this.timeLeft} ... tick ... tick ... tick ...`);
-    this.timeLeft--;
+    console.log(`timeLeft = ${this.gameTimeInSeconds} ... tick ... tick ... tick ...`);
+    this.gameTimeInSeconds--;
   }
 }

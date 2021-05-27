@@ -1,4 +1,7 @@
 export class StockPriceSeries {
+    symbol: string;
     name: string;
-    series: Array<{ name: string, value: number }>;
+    currentPrice: number;
+    color: string;
+    series: Array<number>; // simple array of prices history, one for each tick in the TimeSeries
 }

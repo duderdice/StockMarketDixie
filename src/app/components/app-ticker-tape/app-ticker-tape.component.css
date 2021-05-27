@@ -1,7 +1,7 @@
 .ticker {
-    background: green;
+    /* background: green; */
     padding: 1vw;
-    font-size: large;
+    font-size: 3vh;
     font-weight: bold;
     font-style: italic;
 }
