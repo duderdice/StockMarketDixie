@@ -82,8 +82,8 @@ export class GameActions {
             {
                 symbol: "DLB",
                 name: "Doug Laber Boatworks",
-                color: "#2768A9",
-                background: "rgba(152, 203, 255, 0.33)",
+                color: "#FF6D00",
+                background: "rgba(255, 238, 0, 0.33)",
                 currentPrice: 25.00,
                 isBankrupt: false,
                 series: [25.00]
@@ -91,8 +91,8 @@ export class GameActions {
             {
                 symbol: "SA",
                 name: "Stout Airlines, Inc.",
-                color: "#FF6D00",
-                background: "rgba(255, 238, 0, 0.33)",
+                color: "#2768A9",
+                background: "rgba(152, 203, 255, 0.33)",
                 currentPrice: 25.00,
                 isBankrupt: false,
                 series: [25.00]
