@@ -62,40 +62,40 @@ export class GameActions {
     private getDefaultStockSeries(): Array<Stock> {
         return [
             {
-                symbol: "DAL",
-                name: "Delta Airlines",
+                symbol: "S",
+                name: "Sinclair Realty, Ltd.",
                 color: "#D1202D",
                 background: "rgba(209, 32, 45, 0.33)",
-                currentPrice: 100.00,
+                currentPrice: 25.00,
                 isBankrupt: false,
-                series: [100.00]
+                series: [25.00]
             },
             {
-                symbol: "BGE",
-                name: "Black Gold Energy",
+                symbol: "GB",
+                name: "Griffin Brothers Computing",
                 color: "black",
                 background: "rgba(87, 89, 93, 0.33)",
-                currentPrice: 100.00,
+                currentPrice: 25.00,
                 isBankrupt: false,
-                series: [100.00]
+                series: [25.00]
             },
             {
-                symbol: "T",
-                name: "Doug Laber Enterprises",
-                color: "orange",
-                background: "rgba(255, 255, 50, 0.33)",
-                currentPrice: 100.00,
-                isBankrupt: false,
-                series: [100.00]
-            },
-            {
-                symbol: "F",
-                name: "Ford Motorcars",
+                symbol: "DLB",
+                name: "Doug Laber Boatworks",
                 color: "#2768A9",
                 background: "rgba(152, 203, 255, 0.33)",
-                currentPrice: 100.00,
+                currentPrice: 25.00,
                 isBankrupt: false,
-                series: [100.00]
+                series: [25.00]
+            },
+            {
+                symbol: "SA",
+                name: "Stout Airlines, Inc.",
+                color: "#FF6D00",
+                background: "rgba(255, 238, 0, 0.33)",
+                currentPrice: 25.00,
+                isBankrupt: false,
+                series: [25.00]
             }
         ];
     }
