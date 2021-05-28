@@ -16,7 +16,10 @@ export class GameActions {
     private gameTimeInTicks: number = Constants.GAME_TIME_IN_TICKS;
     // private readonly startYear = 1920;
     // private readonly endYear = 1929;
-
+    private gameTicker: number;
+    private gameTimeInSeconds = Constants.GAME_TIME_IN_TICKS;
+    private readonly updateIntervalInMilliseconds = Constants.UPDATE_INTERVAL_IN_MILLISECONDS;
+    private readonly resetIntervalInMilliseconds = Constants.RESET_INTERVAL_IN_MILLISECONDS
     constructor(
         private _gameHelper: GameHelper,
         private _priceHelper: PriceHelper,
@@ -50,12 +53,6 @@ export class GameActions {
 
     private getDefaultTimeSeries(): Array<string> {
         let timeSeries: Array<string> = [];
-        // for (let i = 0; i < (this.gameTimeInTicks / 4); i++) {
-        //     for (let j = 1; j <= 4; j++) {
-        //         let value = `${this.startYear + i} Q${j}`; // "1920 thru 1930, each quarter"
-        //         timeSeries.push(`${value}`);
-        //     }
-        // }
         for (let i = 0; i < this.gameTimeInTicks; i++) {
             timeSeries.push(`${i}`);
         }
@@ -74,8 +71,8 @@ export class GameActions {
                 series: [100.00]
             },
             {
-                symbol: "BG",
-                name: "Black Gold",
+                symbol: "BGE",
+                name: "Black Gold Energy",
                 color: "black",
                 background: "rgba(87, 89, 93, 0.33)",
                 currentPrice: 100.00,
@@ -86,7 +83,7 @@ export class GameActions {
                 symbol: "T",
                 name: "Doug Laber Enterprises",
                 color: "orange",
-                background: "rgba(255, 255, 153, 0.33)",
+                background: "rgba(255, 255, 50, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
@@ -101,6 +98,32 @@ export class GameActions {
                 series: [100.00]
             }
         ];
+    }
+
+    public activateGameTicker(): void {
+        this.gameTicker = setInterval(() => {
+            if (this.gameTimeInSeconds > 0) {
+                // set timer interval to trigger periodic updates of stock prices
+                this.gameTick();
+            } else {
+                window.clearInterval(this.gameTicker);
+                this.resetGame();
+            }
+        }, this.updateIntervalInMilliseconds);
+    }
+
+    private resetGame() {
+        setTimeout(() => {
+            this.gameTimeInSeconds = Constants.GAME_TIME_IN_TICKS;
+            this.initializeGame();
+            this.activateGameTicker();
+        }, this.resetIntervalInMilliseconds);
+    }
+
+    private gameTick(): void {
+        this.incrementStockPrices();
+        console.log(`timeLeft = ${this.gameTimeInSeconds} ... tick ... tick ... tick ...`);
+        this.gameTimeInSeconds--;
     }
 
     public incrementStockPrices(): void {

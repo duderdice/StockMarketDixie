@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { GameActions } from 'src/app/actionHandlers/game.actions';
 
 @Component({
   selector: 'app-ticker-tape',
@@ -14,7 +15,10 @@ export class AppTickerTapeComponent implements OnInit {
   private readonly maxMessageSize: number = 100;
   private readonly retainedMessageSize: number = -10; // portion of text to substring from end of current value
 
+  public showStartButton: boolean = true;
+
   constructor(
+    private _gameActions: GameActions,
     private _store: Store<any>
   ) { }
 
@@ -24,11 +28,8 @@ export class AppTickerTapeComponent implements OnInit {
     });
   }
 
-  public updateText(): void {
-    if (this.tickerText.length < this.maxMessageSize) {
-      this.tickerText += " with additional content";
-    } else {
-      this.tickerText = this.tickerText.substr(this.retainedMessageSize) + " with additional content";
-    }
+  public startGame(): void {
+    this._gameActions.activateGameTicker();
+    this.showStartButton = false;
   }
 }

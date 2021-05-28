@@ -1,6 +1,6 @@
 <div class="ticker">
 
-    <!-- <button (click)="updateText()">Update Message</button> -->
+    <button *ngIf="showStartButton" class="startButton" (click)="startGame()">Start</button>
 
     <marquee behavior="scroll" direction="left" [innerHTML]="tickerText"></marquee>
 

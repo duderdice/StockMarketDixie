@@ -13,9 +13,6 @@ import * as Constants from 'src/app/constants/constants';
 })
 export class AppComponent {
   public title = 'StockMarketDixie';
-  private gameTimeInSeconds = Constants.GAME_TIME_IN_TICKS;
-  private readonly updateIntervalInMilliseconds = Constants.UPDATE_INTERVAL_IN_SECONDS;
-  private gameTicker: number;
 
   public stocks: Array<Stock>;
   private stocksSubscription: any;
@@ -28,7 +25,6 @@ export class AppComponent {
 
   public ngOnInit() {
     this._gameActions.initializeGame();
-    this.activateGameTicker();
     this.stocksSubscription = this._store.select('prices').subscribe((p: { timeSeries: Array<string>; stockSeries: Array<Stock>; }) => {
       this.stocks = this._priceHelper.transformPricesStateIntoStockInfo(p);
     });
@@ -38,22 +34,4 @@ export class AppComponent {
     this.stocksSubscription.unsubscribe();
   }
 
-  private activateGameTicker(): void {
-    // set timer interval to trigger periodic updates of stock prices
-    this.gameTicker = setInterval(() => {
-      if (this.gameTimeInSeconds > 0) {
-        this.gameTick();
-      } else {
-        // this.timeLeft = 60; // add 60 more seconds
-        console.log('Game Over!');
-        window.clearInterval(this.gameTicker);
-      }
-    }, this.updateIntervalInMilliseconds)
-  }
-
-  private gameTick(): void {
-    this._gameActions.incrementStockPrices();
-    console.log(`timeLeft = ${this.gameTimeInSeconds} ... tick ... tick ... tick ...`);
-    this.gameTimeInSeconds--;
-  }
 }

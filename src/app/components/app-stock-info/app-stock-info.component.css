@@ -33,11 +33,11 @@
 .bankruptWatermark {
     position: absolute;
     transform: rotate(325deg);
-    font-size: 3vh;
+    font-size: 4vh;
     font-weight: bold;
     color: red;
     border: red double;
     padding: 2vh;
-    top: 1.5vh;
+    /* top: 1.5vh; */
     opacity: 0.5;
 }

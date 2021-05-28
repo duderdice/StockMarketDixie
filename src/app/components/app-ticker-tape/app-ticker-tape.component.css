@@ -4,3 +4,7 @@
     font-weight: bold;
     font-style: italic;
 }
+
+.startButton {
+    display: inline-block;
+}
