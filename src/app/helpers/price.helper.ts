@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { formatCurrency } from '@angular/common';
 
 import { Stock } from '../models/Stock';
 import { ChartDataSeries } from '../models/ChartDataSeries';
@@ -49,5 +49,9 @@ export class PriceHelper {
         // console.log(stocks);
         // return stocks;
         return p.stockSeries;
+    }
+
+    public formatAsCurrency(price: number): string {
+        return formatCurrency(price, 'en_US', '$');
     }
 }

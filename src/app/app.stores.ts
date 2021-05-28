@@ -4,10 +4,12 @@ import { combineReducers } from '@ngrx/store';
 
 // Stores/Reducers
 import { prices } from './stores/prices.store';
+import { ticker } from './stores/tickerTape.store';
 
 // const reducers = { /* see below */
 export const APP_STORES = {
-    prices
+    prices,
+    ticker
 };
 
 /*
