@@ -14,8 +14,8 @@ import { PriceHelper } from '../helpers/price.helper';
 export class GameActions {
 
     private gameTimeInTicks: number = Constants.GAME_TIME_IN_TICKS;
-    private readonly startYear = 1920;
-    private readonly endYear = 1922;
+    // private readonly startYear = 1920;
+    // private readonly endYear = 1929;
 
     constructor(
         private _gameHelper: GameHelper,
@@ -48,22 +48,6 @@ export class GameActions {
         this._store.dispatch({ type: APPEND_TICKER, payload: ticker });
     }
 
-    private getMockTimeSeries(): Array<string> {
-        return [
-            "1920",
-            "1921",
-            "1922",
-            "1923",
-            "1924",
-            "1925",
-            "1926",
-            "1927",
-            "1928",
-            "1929",
-            "1930",
-        ];
-    }
-
     private getDefaultTimeSeries(): Array<string> {
         let timeSeries: Array<string> = [];
         // for (let i = 0; i < (this.gameTimeInTicks / 4); i++) {
@@ -84,6 +68,7 @@ export class GameActions {
                 symbol: "DAL",
                 name: "Delta Airlines",
                 color: "#D1202D",
+                background: "rgba(209, 32, 45, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
@@ -92,6 +77,7 @@ export class GameActions {
                 symbol: "BG",
                 name: "Black Gold",
                 color: "black",
+                background: "rgba(87, 89, 93, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
@@ -100,6 +86,7 @@ export class GameActions {
                 symbol: "T",
                 name: "Doug Laber Enterprises",
                 color: "orange",
+                background: "rgba(255, 255, 153, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
@@ -108,6 +95,7 @@ export class GameActions {
                 symbol: "F",
                 name: "Ford Motorcars",
                 color: "#2768A9",
+                background: "rgba(152, 203, 255, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
@@ -147,7 +135,7 @@ export class GameActions {
             return (Math.random() - 0.3) / 10;  // range from -3% to +7%
         } else {
             //after 1929, bias towards strongly negative growth
-            return (Math.random() - 0.95) / 10;  // range from -9% to +1%
+            return (Math.random() - 0.99) / 2;  // range from -33% to +1%
         }
     }
 

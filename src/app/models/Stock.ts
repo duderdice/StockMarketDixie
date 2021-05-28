@@ -4,5 +4,6 @@ export class Stock {
     currentPrice: number;
     isBankrupt: boolean;
     color: string;
+    background: string;
     series: Array<number>; // simple array of prices history, one for each tick in the TimeSeries
 }
