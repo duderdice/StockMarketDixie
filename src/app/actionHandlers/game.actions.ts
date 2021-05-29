@@ -89,8 +89,8 @@ export class GameActions {
                 series: [100.00]
             },
             {
-                symbol: "SA",
-                name: "Stout Airlines, Inc.",
+                symbol: "STS",
+                name: "Stout Transport Svcs",
                 color: "#2768A9",
                 background: "rgba(152, 203, 255, 0.33)",
                 currentPrice: 100.00,
