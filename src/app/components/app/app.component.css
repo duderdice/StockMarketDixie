@@ -23,6 +23,7 @@
   /* flex-flow: row nowrap; */
   justify-content: space-around;
   flex: 9 0 auto;
+  height: 72vh;
 }
 
 #tickerPanel {
