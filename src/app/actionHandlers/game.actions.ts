@@ -45,7 +45,7 @@ export class GameActions {
     private initializeTickerTape(): void {
         const stocks: Array<Stock> = this.getDefaultStockSeries();
         const tickerArr: Array<string> = stocks.map((s: Stock) => {
-            return `${s.symbol} ${this._priceHelper.formatAsCurrency(s.currentPrice)}`;
+            return `${s.symbol} ${this._priceHelper.formatAsCurrency(s.currentPrice)},  `;
         });
         const ticker = tickerArr.join('      ');
         this._store.dispatch({ type: APPEND_TICKER, payload: ticker });
@@ -143,7 +143,7 @@ export class GameActions {
                 let newStock = Object.assign({}, oldStock);
                 newStock.currentPrice = parseFloat(newPrice.toFixed(2));
                 payload.price = newPrice;
-                const tickerPayload = `  ${oldStock.symbol} ${this._priceHelper.formatAsCurrency(newPrice)}   `;
+                const tickerPayload = `  ${oldStock.symbol} ${this._priceHelper.formatAsCurrency(newPrice)},   `;
                 this._store.dispatch({ type: APPEND_TICKER, payload: tickerPayload });
             }
             // console.log(`Dispatching RECORD_STOCK_PRICE_UPDATE with payload => ${JSON.stringify(payload)}`);
