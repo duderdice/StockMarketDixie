@@ -1,12 +1,13 @@
 #appPanel {
-  background: white;
+  /* background: green; */
   display: flex;
   flex-flow: column nowrap;
+  flex: 1 1 auto;
   justify-content: space-between;
   align-items: stretch;
-  min-height: 100%;
   flex-grow: 1;
   overflow: hidden;
+  height: 99vh;
 }
 
 #stocksPanel {

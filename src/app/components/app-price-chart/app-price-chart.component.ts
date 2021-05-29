@@ -52,7 +52,7 @@ export class AppPriceChartComponent implements OnInit {
 
   public xAxisFormatter(val) {
     const valInt = parseInt(val);
-    if (valInt % 52 <= 7) {
+    if (valInt % 52 <= 5) {
       const label = Math.round(1920 + (valInt / 52));
       return `${label}`;
     } else {

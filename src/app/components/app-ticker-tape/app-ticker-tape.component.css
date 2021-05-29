@@ -1,4 +1,6 @@
 .ticker {
+    display: flex;
+    flex: 1 1 auto;
     padding: 1vw;
     font-size: 3vh;
     font-weight: bold;
