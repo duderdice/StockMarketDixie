@@ -6,7 +6,7 @@
 
 export const
     GAME_TIME_IN_TICKS = 520, //weekly ticks for full decade
-    UPDATE_INTERVAL_IN_MILLISECONDS = 2000, // 520 ticks for 3 hours => 180min per 520ticks => 
+    UPDATE_INTERVAL_IN_MILLISECONDS = 3500, // 520 ticks for 30 min => 30 min per 520ticks => 3.5 seconds per tick
     RESET_INTERVAL_IN_MILLISECONDS = 5000; // pause for 5 seconds, then restart game
     // AppName = 'SampleAngularApp',
     // AppVersion = 'v0.0.0',
