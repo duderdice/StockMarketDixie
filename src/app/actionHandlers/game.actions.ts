@@ -64,8 +64,8 @@ export class GameActions {
             {
                 symbol: "S",
                 name: "Sinclair Realty, Ltd.",
-                color: "#D1202D",
-                background: "rgba(209, 32, 45, 0.33)",
+                color: "#ff5500",
+                background: "rgba(255, 109, 0, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
@@ -82,8 +82,8 @@ export class GameActions {
             {
                 symbol: "DLB",
                 name: "Doug Laber Boatworks",
-                color: "#FF6D00",
-                background: "rgba(255, 238, 0, 0.33)",
+                color: "#F6BE00",
+                background: "rgba(255, 255, 0, 0.33)",
                 currentPrice: 100.00,
                 isBankrupt: false,
                 series: [100.00]
