@@ -72,7 +72,7 @@ export class GameActions {
             },
             {
                 symbol: "GB",
-                name: "Griffin Brothers Computing",
+                name: "Griffin Brothers IT Svcs",
                 color: "black",
                 background: "rgba(87, 89, 93, 0.33)",
                 currentPrice: 100.00,
